@@ -26,22 +26,47 @@
 	</h2>
 	<h3>下面列出的所有直播源均为免费公开的，只需将链接复制在app的添加配置直播源即可</h3>
 	<h3>待测试完成后请自行删除，切勿进行传播</h3>
-  <h2>冰茶</h2>
-  <div class="source-link">
-  	https://188766.xyz/itv
+  <h2>冰茶（优先推荐）</h2>
+  <div class="source-link-container">
+    <div class="source-link">https://188766.xyz/itv</div>
+    <button class="copy-btn" onclick="copyToClipboard(this)">复制</button>
   </div>
   <h2>itvlist</h2>
-  <div class="source-link">
-  	https://raw.githubusercontent.com/mzky/checklist/refs/heads/master/itvlist.m3u
+  <div class="source-link-container">
+    <div class="source-link">https://raw.githubusercontent.com/mzky/checklist/refs/heads/master/itvlist.m3u</div>
+    <button class="copy-btn" onclick="copyToClipboard(this)">复制</button>
   </div>
   <h2>YanG Gather</h2>
-  <div class="source-link">
-  	https://tv.iill.top/m3u/Gather
+  <div class="source-link-container">
+    <div class="source-link">https://tv.iill.top/m3u/Gather</div>
+    <button class="copy-btn" onclick="copyToClipboard(this)">复制</button>
   </div>
   <h2>suxuang</h2>
-  <div class="source-link">
-  	https://raw.githubusercontent.com/suxuang/myIPTV/main/ipv4.m3u
+  <div class="source-link-container">
+    <div class="source-link">https://raw.githubusercontent.com/suxuang/myIPTV/main/ipv4.m3u</div>
+    <button class="copy-btn" onclick="copyToClipboard(this)">复制</button>
   </div>
 </div>
+<script>
+function copyToClipboard(btn) {
+  const container = btn.parentElement;
+  const sourceLink = container.querySelector('.source-link');
+  const text = sourceLink.innerText.trim();
+  
+  navigator.clipboard.writeText(text).then(function() {
+    const originalText = btn.innerText;
+    btn.innerText = '已复制';
+    btn.classList.add('copied');
+    
+    setTimeout(function() {
+      btn.innerText = originalText;
+      btn.classList.remove('copied');
+    }, 2000);
+  }).catch(function(err) {
+    console.error('复制失败:', err);
+    alert('复制失败，请重试');
+  });
+}
+</script>
 </body>
 </html>
